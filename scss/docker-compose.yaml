@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  node-dev:
+    image: node-dev
+    build:
+      context: .
+      args:
+        NODE_ENV: "test"
+    volumes:
+      - /usr/bin/git:/usr/bin/git
+      - .:/usr/src/app
+    command: sh -c "yarn && yarn lint:fix"
+    ports:
+      - "3000:3000"
