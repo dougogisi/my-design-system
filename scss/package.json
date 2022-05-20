@@ -23,12 +23,14 @@
 
     "scripts": {
       "lint": "stylelint './**/*.scss'",
-      "lint:fix": "yarn lint --fix"
+      "lint:fix": "yarn lint --fix",
+      "build": "node src/scripts/build.js"
     },
 
     "husky": {
       "hooks": {
-        "pre-commit": "docker run --rm -v \"$PWD\":/usr/src/app -w /usr/src/app node-dev yarn lint-staged"
+        "pre-commit-docker": "docker run --rm -v \"$PWD\":/usr/src/app -w /usr/src/app node-dev yarn lint-staged", 
+        "pre-commit": "docker exec node-dev lint-staged"
       }
     },
 
